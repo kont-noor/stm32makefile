@@ -1,0 +1,4 @@
+r
+loadbin out/bin/STM32F1-hal.bin, 0 
+r
+q
