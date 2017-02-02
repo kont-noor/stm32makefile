@@ -12,9 +12,9 @@ SRCDIR = src
 SRCDIR += src/common
 SRCDIR += src/drv
 SRCDIR += src/extra-lib
-SRCDIR += src/hal
 SRCDIR += src/hal/CMSIS/core-support
 SRCDIR += src/hal/CMSIS/device-support
+SRCDIR += src/STM32F10x_StdPeriph_Driver/inc
 
 LIBDIR = 
 LIB = 
