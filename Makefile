@@ -1,8 +1,8 @@
 
 # ************************* START USER DEFINED SECTION ************************
-TARGET = STM32F1-hal
+TARGET = target
 
-LDSCRIPT = STM32F10X_MD_VL.ld
+LDSCRIPT = STM32F10X_MD.ld
 
 DEF = STM32F10X_MD_VL
 DEF += HSE_VALUE=8000000
@@ -14,6 +14,8 @@ SRCDIR += src/drv
 SRCDIR += src/extra-lib
 SRCDIR += src/hal/CMSIS/core-support
 SRCDIR += src/hal/CMSIS/device-support
+#SRCDIR += src/CM3/CoreSupport
+#SRCDIR += src/CM3/DeviceSupport/ST/STM32F10x
 SRCDIR += src/STM32F10x_StdPeriph_Driver/inc
 
 LIBDIR = 
@@ -128,29 +130,15 @@ all:
 
 clean:
 	@echo - cleaning $(OBJDIR), $(LSTDIR), $(BINDIR)...
-ifeq ($(OS),Windows)
-	($(OBJDIR):&(rd /s /q "$(OBJDIR)" 2> NUL))&
-	($(LSTDIR):&(rd /s /q "$(LSTDIR)" 2> NUL))&
-	($(BINDIR):&(rd /s /q "$(BINDIR)" 2> NUL))&
-endif
-ifeq ($(OS),Linux)
 	-@rm -rf $(OBJDIR)
 	-@rm -rf $(LSTDIR)
 	-@rm -rf $(BINDIR)
-endif
 
 dirs:
 	@echo - making dirs $(OBJDIR), $(LSTDIR), $(BINDIR)...
-ifeq ($(OS),Windows)
-	($(OBJDIR):&(mkdir "$(OBJDIR)" 2> NUL))&
-	($(LSTDIR):&(mkdir "$(LSTDIR)" 2> NUL))&
-	($(BINDIR):&(mkdir "$(BINDIR)" 2> NUL))&
-endif
-ifeq ($(OS),Linux)
 	-@mkdir -p $(OBJDIR)
 	-@mkdir -p $(LSTDIR)
 	-@mkdir -p $(BINDIR)
-endif
 
 erase:
 	@echo - erasing memory with $(FLASHER)...
